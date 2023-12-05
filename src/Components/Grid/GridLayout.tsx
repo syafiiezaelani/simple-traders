@@ -2,13 +2,13 @@ import React from "react";
 import "../../../node_modules/react-grid-layout/css/styles.css"
 import Button from '@mui/material/Button'
 import CloseIcon from '@mui/icons-material/Close';
-import { Tile } from "../Tile/Tile";
-import { ComponentTypes } from "../../Enum/enum";
+import { Tile } from "../tile/Tile";
+import { ComponentTypes } from "../../enum/enum";
 
 import ReactGridLayout, { WidthProvider, Responsive } from "react-grid-layout";
 import _ from 'lodash';
-import { Blotter } from "../Blotter/Blotter";
-import { Chart } from "../Chart/Chart"
+import { Blotter } from "../blotter/Blotter";
+import { Chart } from "../chart/Chart"
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 

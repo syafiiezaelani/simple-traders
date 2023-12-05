@@ -9,7 +9,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { ThemeProvider, createTheme } from '@mui/material';
 
-import GridLayout from './Components/Grid/GridLayout';
+import GridLayout from './components/grid/GridLayout';
 
 const darkTheme = createTheme({
   palette: {
