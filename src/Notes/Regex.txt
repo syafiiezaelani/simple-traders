@@ -1,0 +1,37 @@
+reg expression is a way to search through text. 
+
+to do certain things: 
+replace,
+validate, 
+find and replace
+many more
+
+flags: 
+after the reg ex, there are some things:
+    global: all instances of the matches
+    insensitivity: not case sensitive. 
+
+example: ea?
+we want 'e' but 'a' is optional
+
+example: re*
+'r' is marching normal 'r', but '*' means that we are matching any number of 'e's, so ree reeeee reeeeeeee all would match. 
+
+example: .\.
+the first '.' means that it will match any character before that slash. '\.' means that it is an escape character. since we know full stop matches any character, to search for a full stop itself then we need the back slash to be able to search for it. 
+
+example: \w{4,5}
+'\w' we are looking for any character, curly braces indicate the length of the word, so it is 4 to 5 characters long. 
+
+example: [fc]at
+match any character in the array. so words that would pass would be 'fat' or 'cat'
+
+example: [a-z]at
+similar to the top, difference is there is a range now. so matching anything from a to z 
+
+exmaple (t|T)he
+parenthesis is similar to brackets in math. its separating the rest of the logs in regex. so based on this example we are looking for 'the' or 'The'. if we dont have parenthesis it would be 't' and 'The' which is not what we want. 
+
+example (t|e|r){2,3}
+    this means that we have to match at least 2 or 3 of the characters in the parenthesis
+

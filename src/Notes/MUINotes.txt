@@ -1,0 +1,4 @@
+Check this link for more styling details: 
+https://www.js-howto.com/how-to-change-the-styles-of-mui-textfield-in-react/
+
+to see styling affected area especially with props, then use background to see affected area. 

@@ -1,0 +1,28 @@
+why axios: 
+
+It has good defaults to work with JSON data. Unlike alternatives such as the Fetch API, you often don't need to set your headers. Or perform tedious tasks like converting your request body to a JSON string.
+Axios has function names that match any HTTP methods. To perform a GET request, you use the .get() method.
+Axios does more with less code. Unlike the Fetch API, you only need one .then() callback to access your requested JSON data.
+Axios has better error handling. Axios throws 400 and 500 range errors for you. Unlike the Fetch API, where you have to check the status code and throw the error yourself.
+Axios can be used on the server as well as the client. If you are writing a Node.js application, be aware that Axios can also be used in an environment separate from the browser.
+
+=============
+
+using rapid api as the api provider, need to find a stock market api 
+using yahoo finance
+
+this is the link: https://rapidapi.com/apidojo/api/yh-finance/
+
+api that i can use: 
+yahoo: mboum can get the tickers...i think name better but for now just this. 
+alpha vantage: get the price of the stocks for a making a chart in a day? smallest interval is 5 minutes. 
+
+the code is already there, they allow you to choose which library and which language you are making that call, so that's brilliant
+
+the free plan allows for only 1000 request an hour
+can make one request every 3.6 seconds, change that to 4
+we will be making 900 requests per hour
+
+the thing is that you should not be making multiple request when sending pricing, you should be using a technology like websocket that allows you to subscribe to pricing, then whenever there are updates they will just push to you. 
+
+there are 2 ways, websockets and server side events(SSE). SSE is only one way, that means you can only send data from the server to your app, so like read only. websocket allows you to subscribe and make requests as well. 

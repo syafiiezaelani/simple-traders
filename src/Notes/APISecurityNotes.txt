@@ -1,0 +1,14 @@
+Hide API keys before pushing to GIT. 
+
+Start with .env file, short for environtment file. 
+you just create key value pairs to be able to access those keys. 
+
+You shouldnt use any of the secret env code for front end when you host the project in real life, you can create a backend api end point to get around this. 
+
+there is another issue, anyone else also has access to the endpoint that you have created, so again it defeats the purpose. a way to get around this is to send the request together with a password that you know, cause on the server side you know what to expect for this password. 
+
+CORS. basically you can define rules that the browser to respect. so for example you can say only these domain can use this endpoint. 
+
+finally you can use secret credential or token where the api can validate the request. 
+
+can also use json webtoken. when the user logs in, they are given that token. then can use that to validate. 

@@ -1,0 +1,61 @@
+refer to this for the structure of the app: 
+https://scrimba.com/articles/react-project-structure/#ideal-folder-structure
+
+recommended that the app should be structured as such: 
+src
+├── api                  # API related files
+│   ├── axios.js       # Axios configuration file
+│   └── endpoints.js    # API endpoints definitions
+├── components           # Reusable React components
+│   ├── atoms           # Basic building blocks of UI
+│   │   ├── Button.js
+│   │   └── Input.js
+│   ├── molecules      # Combination of atoms
+│   │   ├── Card.js
+│   │   └── Modal.js
+│   └── organisms       # Reusable UI components
+│       ├── Header.js
+│       ├── Footer.js
+│       └── Sidebar.js
+├── hooks                  # Custom React hooks
+│   ├── useFetch.js      # Fetch data from API
+│   └── useForm.js        # Handle form state and submission
+├── pages                  # Page level components
+│   ├── Home.js
+│   ├── About.js
+│   └── Contact.js
+├── routes                 # Routing configuration
+│   ├── AppRouter.js
+│   └── routes.js
+├── store                 # Redux store configuration
+│   ├── actions.js        # Action creators for dispatching actions
+│   ├── reducers.js      # Reducers to handle state updates
+│   └── store.js          # Redux store configuration
+├── styles                 # Global and component-specific styles
+│   ├── global.css
+│   └── components        # Component-specific CSS files
+│       ├── Header.css
+│       ├── Footer.css
+│       └── Sidebar.css
+├── App.js                 # Main application entry point
+├── index.js               # Main index file for rendering the app
+└── tests                  # Unit and integration tests
+    ├── components        # Component tests
+    ├── hooks             # Hook tests
+    └── store             # Store tests
+
+
+this in react/js: 
+    /*
+    In React class components, the `bind(this)` method is used to explicitly bind the context of a specific function to the component instance. This is particularly important when passing functions as callbacks or event handlers, as it ensures that the `this` keyword within those functions will always refer to the component instance itself.
+
+    The reason for this binding behavior stems from the way JavaScript handles the `this` keyword. When a function is passed as a callback, the value of `this` inside the function depends on how the callback is invoked. If the callback is directly called, `this` will refer to the global object. However, if the callback is passed as a prop or event handler, `this` can refer to different objects depending on how it's handled by the parent component or event system.
+
+    To avoid this ambiguity and ensure that `this` always refers to the component instance, we use the `bind(this)` method. This method creates a new function that has the `this` context explicitly bound to the component instance. This ensures that when the function is called, even if it's passed as a callback or event handler, the `this` keyword will always refer to the component instance itself.
+
+    In modern React development, the use of arrow functions has largely replaced the need for explicit binding using `bind(this)`. Arrow functions automatically bind their `this` context to the scope in which they are defined, which in the case of React class components, is the component instance itself. This eliminates the need for explicit binding and makes the code more concise and readable.
+
+    However, there are still some instances where explicit binding using `bind(this)` may be necessary. For example, if you need to pass a function as a callback to a third-party library that doesn't support arrow functions, or if you need to prevent a function from being re-bound each time it's rendered, explicit binding with `bind(this)` can be useful.
+
+    In general, it's recommended to use arrow functions for event handlers and callbacks whenever possible, as they provide a more concise and modern approach to binding. However, it's important to understand the concept of binding and when explicit binding with `bind(this)` may be necessary.
+    */

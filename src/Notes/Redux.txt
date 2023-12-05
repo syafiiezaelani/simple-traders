@@ -1,0 +1,71 @@
+============== Notes on Redux ==============
+
+Go to redux website, there is a version specific to react. 
+
+there are a couble of things that you have to download, redux-react, the toolkit 
+
+there are 3 main components for redux, the store, reducers and actions. 
+
+so store is the global state that anyone of its child component can reference from. 
+
+reducers take in an action object that will then return a new state. so state is immutable, so you cant change it. but redux toolkit allows you to write code like as if you were mutating it...in reality youre not. so take note of that
+
+action is an object that has 2 params, state and payload. state is the current state that you wanna make those changes at. 
+for example state.count = state.count + 1; 
+note that you can only reference the values, cannot directly manipulate so something like this wont work: 
+state.count += 1; although it does the same thing as the code above, it doesnt work
+there is alo a payload parameter. you can pass variables to the action object liek this: 
+
+action: {
+    state,
+    payload: {
+        list: []
+    }
+}
+
+later in reducer do this: 
+state.list = action.payload.list; 
+you can then update the list in the store. 
+
+=============== Redux Middleware =================
+
+tyring to find out how to use thunks cause appraently you can use that to update the state asynchrounously though what i have done is just to update the redux state once we get the response from server. 
+
+maybe i dont have to use this? doesnt seem like i need to use any other functionality. 
+
+=============== WHAT IS REDUX ======================
+
+A RESTful API (or REST API) is a specific type of API that follows the guidelines of the REST (Representational State Transfer) architectural style. It's a way for applications to communicate with each other and exchange data over the internet.
+
+Here's a breakdown of what makes a REST API:
+
+REST stands for:
+
+Representational: Data is exchanged in a standardized format, typically JSON or XML.
+State Transfer: The state of a resource (like a user or product) is transferred between the client and server using HTTP requests.
+Key characteristics of REST APIs:
+
+Client-server architecture: The client makes requests to the server, which returns responses.
+Statelessness: Each request is independent of previous requests. The server doesn't need to remember past interactions.
+Uniform interface: Resources are identified by URIs (Uniform Resource Identifiers) and accessed using standardized HTTP methods (GET, POST, PUT, DELETE).
+Cacheable: Responses can be cached by the client to improve performance.
+Layered system: The architecture can be layered, making it scalable and flexible.
+Benefits of using REST APIs:
+
+Simple and easy to understand: REST APIs follow familiar concepts like URLs and HTTP methods, making them easy to learn and use.
+Interoperable: REST APIs are language-agnostic, which means they can be used by applications written in different languages.
+Scalable: REST APIs can be easily scaled to support a large number of users and requests.
+Flexible: REST APIs can be used to build a variety of applications, from simple web applications to complex enterprise systems.
+Examples of REST APIs:
+
+Google Maps API
+Twitter API
+Facebook API
+GitHub API
+Amazon Web Services API
+Here are some additional resources that you might find helpful:
+
+Wikipedia: https://en.wikipedia.org/wiki/REST
+RESTful API Tutorial: https://m.youtube.com/watch?v=_uZYOgzYheU
+REST API Design Guide: https://docs.mulesoft.com/mule-runtime/latest/rest-api-examples
+I hope this explanation helps! Let me know if you have any further questions.
