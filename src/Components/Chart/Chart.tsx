@@ -1,11 +1,10 @@
-import React, {useEffect, useRef, useState} from "react";
-import { useSelector, useDispatch } from "react-redux";
+import {useEffect, useState} from "react";
+import { useSelector } from "react-redux";
 import { LineChart, XAxis, YAxis, Tooltip, Line, ResponsiveContainer } from "recharts";
-import { selectStocksList, addStocksList } from "../../redux/reducers/stocksListSlice";
+import { selectStocksList } from "../../redux/reducers/stocksListSlice";
 import { Autocomplete, TextField } from "@mui/material";
 import { webSocketPricingRequest } from "../../websocket/websocketUtilities";
-import { PricingRequest } from "../../websocket/websocketInterface";
-import { StockChartServerPrices, StocksDayPrices, selectChartPrices } from "../../redux/reducers/stocksDayPricesSlice";
+import { StockChartServerPrices, selectChartPrices } from "../../redux/reducers/stocksDayPricesSlice";
 
 export const Chart = () => {
     // Redux 

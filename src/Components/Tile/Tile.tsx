@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TextField, Autocomplete, Button, } from "@mui/material";
 import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
-import { addStocksList, selectStocksList } from "../../redux/reducers/stocksListSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { webSocketSendMessage, webSocketPricingRequest, webSocketCloseRequest } from "../../websocket/websocketUtilities";
-import { PricingRequest } from "../../websocket/websocketInterface";
+import { selectStocksList } from "../../redux/reducers/stocksListSlice";
+import { useSelector } from "react-redux";
+import { webSocketPricingRequest, webSocketCloseRequest } from "../../websocket/websocketUtilities";
 import { selectPriceMap } from "../../redux/reducers/stocksPriceSlice";
 
 interface TileProps {
@@ -15,7 +14,6 @@ export const Tile = (props: TileProps) => {
   const [selectedStockName, setSelectedStockName] = useState<string>("");
   const refSelectedStockName = useRef("");// With useEffect, it takes the value of the variable when it was called, so if useEffect is running once, it wont get updated values, that's why you need useRef.
   const priceCurrency: string = "USD";
-  const priceArray = [];
 
   const stockNames = useSelector(selectStocksList);
   const pricesObject: any = useSelector(selectPriceMap); // TODO: Update typeof any, its any cause redux doesnt allow use of map
