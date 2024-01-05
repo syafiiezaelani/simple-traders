@@ -1,0 +1,15 @@
+What is MERN?
+
+    Server-side framework: Express.js acts as a web framework built on top of Node.js. It provides a lightweight and flexible foundation for building web applications, handling incoming requests, routing them to appropriate handlers, and processing responses.
+    Routing: Express.js allows you to define routes for your web application. These routes map URLs to specific functions that handle the request and send back the appropriate response.
+    Middleware: Express.js supports middleware, which are functions that intercept requests and responses before they reach the final handler. This allows you to perform tasks such as logging, authentication, and error handling consistently throughout your application.
+    API development: Express.js is a powerful tool for building RESTful APIs. It provides functionalities like request parsing, response formatting, and content negotiation, making it easier to develop APIs that can be consumed by various clients.
+
+Relationship to other MERN components:
+
+    MongoDB: Express.js interacts with the MongoDB database through drivers to store, retrieve, and manipulate data.
+    React: Express.js serves the backend logic and data to the React application, which handles the user interface and presentation layer.
+    Node.js: Express.js utilizes the capabilities of Node.js to run the server and handle asynchronous requests efficiently.
+
+=============
+Dont think i need express server, could probably get away with just a websocket server. for now planning to just use websocket server. 

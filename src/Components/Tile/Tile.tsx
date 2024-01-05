@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TextField, Autocomplete, Button, } from "@mui/material";
 import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
-import { pricingService, stockListService } from "../../api/endpoints";
 import { addStocksList, selectStocksList } from "../../redux/reducers/stocksListSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { webSocketSendMessage, webSocketPricingRequest, webSocketCloseRequest } from "../../websocket/websocketUtilities";
+import { PricingRequest } from "../../websocket/websocketInterface";
+import { selectPriceMap } from "../../redux/reducers/stocksPriceSlice";
 
 interface TileProps {
   id: number
@@ -11,62 +13,50 @@ interface TileProps {
 
 export const Tile = (props: TileProps) => {
   const [selectedStockName, setSelectedStockName] = useState<string>("");
-  const [prices, setPrices] = useState<string[]>([]);
-  const [priceCount, setPriceCount] = useState<number>(0);
+  const refSelectedStockName = useRef("");// With useEffect, it takes the value of the variable when it was called, so if useEffect is running once, it wont get updated values, that's why you need useRef.
   const priceCurrency: string = "USD";
+  const priceArray = [];
 
-  // =========Redux=========
-  const dispatch = useDispatch();
   const stockNames = useSelector(selectStocksList);
+  const pricesObject: any = useSelector(selectPriceMap); // TODO: Update typeof any, its any cause redux doesnt allow use of map
+  const currentPrice: string = pricesObject.stocksPriceMap[selectedStockName] ? pricesObject.stocksPriceMap[selectedStockName] : '-- --';
+  const previousPrice = useRef('0');
 
   const getPriceClass = () => {
     let className = "Price";
-    if(prices?.length > 0 ){
-      if(prices[priceCount] > prices[priceCount - 1]){
-        className = "PriceUp";
-      } else if(prices[priceCount] < prices[priceCount - 1]){
-        className = "PriceDown";
-      }
-    }
+    const parsedCurrent = parseFloat(currentPrice);
+    const parsedPrevious = parseFloat(previousPrice.current);
+
+    if(!isNaN(parsedCurrent) && !isNaN(parsedPrevious)){
+      className = parsedCurrent > parsedPrevious ? "PriceUp" : parsedCurrent < parsedPrevious ? "PriceDown" : "PriceSame"
+    }// PriceSame has no styling as of now.
     return className;
   }
-  
-  useEffect(()=>{ // Used to get list of stocks to trade with, should run once. 
-    console.log("Tile: Get list of stocks.")
-    if(stockNames.length === 0){
-      const stockListPromise = stockListService();
-      stockListPromise.then((value: string[]) => dispatch(addStocksList(value)));
-    }
 
+  useEffect(()=>{
+    // Updates previous pricing for styling updates. 
+    previousPrice.current = currentPrice;
+  }, [currentPrice])
     
-  }, [])
-  
-  useEffect(()=>{ // Gets pricing data based on selected stock name, updates everytime selected stock name changes. 
-    console.log("Tile: Get pricing")
+  useEffect(()=>{
+    // Gets pricing data based on selected stock name, updates everytime selected stock name changes. 
     if(selectedStockName){
-      pricingService(selectedStockName).then((value: string[] | undefined)=> {
-        if(value){
-          setPrices(value);
-        }
-      });
-    } 
+      webSocketPricingRequest(selectedStockName, "TILE");
+      refSelectedStockName.current = selectedStockName;
+    }
   }, [selectedStockName])
   
-  useEffect(()=>{ // Sets interval for prices to tick. Need to use webSocket to subscribe to pricing instead of doing this. 
-    if(prices?.length > 1  && selectedStockName){
-      const interval = setInterval(() => {
-        setPriceCount(priceCount + 1);
-        if(priceCount === prices?.length - 1){
-          setPriceCount(0)
-        }
-      }, 1000);
+  useEffect(()=>{
+    // Used to handle when component first launches and return component is for when component closes.
+    console.log("Tile launched");
+
+    return ()=>{
+      webSocketCloseRequest(refSelectedStockName.current)
+      console.log("Tile closed", refSelectedStockName)
       
-      
-      return()=> clearInterval(interval);
     }
-  })
-
-
+  }, [])
+  
 
   return(
     <div style={{padding: "0.5em"}}>
@@ -80,13 +70,16 @@ export const Tile = (props: TileProps) => {
           width: "90%",
         }}
         renderInput={(params) => <TextField {...params} label="Stock Tickers" />}
-        onInputChange={(element, event)=> {console.log("setting stock name: ", event); setSelectedStockName(event);}}
+        onInputChange={(element, event)=> {
+          console.log("setting stock name: ", event);
+          setSelectedStockName(event);
+        }}
       />
       {/* -----------------Pricing display------------------------- */}
-      <span className={prices?.length > 1 && selectedStockName ? getPriceClass() : ""} style={{display: "flex", justifyContent: "center", alignItems: "center", height: "3em", margin: "0.5em", fontSize: "1.2em"}}>
+      <span className={getPriceClass()} style={{display: "flex", justifyContent: "center", alignItems: "center", height: "3em", margin: "0.5em", fontSize: "1.2em"}}>
         {getPriceClass() === "PriceUp" ? <ArrowDropUp fontSize="large"/> : getPriceClass() === "PriceDown" ? <ArrowDropDown fontSize="large"/> : null}
-        <h1>{prices?.length > 1 && selectedStockName ? prices[priceCount] : "-- -- "}</h1>
-        <h4 style={{marginLeft: "0.5em"}}>{prices?.length > 1 ? priceCurrency : ""}</h4>
+        <h1>{currentPrice}</h1>
+        <h4 style={{marginLeft: "0.5em"}}>{currentPrice !==  "-- --" ? priceCurrency : ""}</h4>
       </span>
         {/* -----------------Inputs------------------ */}
       <span className="PriceInput" style={{display: " flex", alignItems: "center", fontSize: "1em", paddingBottom: "0.5em",}}>

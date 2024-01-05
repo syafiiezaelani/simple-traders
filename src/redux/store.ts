@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import stocksListReducer from "./reducers/stocksListSlice"
+import stocksListReducer from "./reducers/stocksListSlice";
+import  stocksPriceMapReducer from "./reducers/stocksPriceSlice";
+import stocksDayPricesReducer from "./reducers/stocksDayPricesSlice";
 
 export const store =  configureStore({
     reducer: {
         stocksList: stocksListReducer,
-        // pricing: pricingReducer,
+        stocksPriceMap: stocksPriceMapReducer,
+        stocksDayPrices: stocksDayPricesReducer
     }
 })
 

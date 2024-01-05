@@ -209,8 +209,8 @@ export default class GridLayout extends React.Component<GridLayoutProps, GridLay
           </div>
         </div>
         <ResponsiveReactGridLayout
-        isDraggable={true}
-        draggableHandle=".drag-handle"
+          isDraggable={true}
+          draggableHandle=".drag-handle"
           onLayoutChange={this.onLayoutChange}
         //   onBreakpointChange={this.onBreakpointChange}
           layouts={this.getSelectedLayout()}

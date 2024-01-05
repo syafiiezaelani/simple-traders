@@ -1,0 +1,70 @@
+Node JS is a run time enviroment that allows you to run JS code. 
+
+is node js a compilter?
+
+    No, a runtime environment (RTE) is not a compiler that runs the code on another computer. Here's a breakdown of the differences:
+
+    Runtime environment:
+
+    A software system that provides the infrastructure for executing a program.
+    Includes libraries, frameworks, and other resources needed to run the program.
+    Examples: Node.js for JavaScript, Java Virtual Machine (JVM) for Java, Python interpreter for Python.
+    Compiler:
+
+    A program that translates source code (written in a programming language) into machine code (executable code understood by the computer).
+    Does not execute the code itself.
+    Once compiled, the machine code can be run directly on the computer without needing the compiler.
+    Key differences:
+
+    Purpose: An RTE provides the environment for running code, while a compiler translates code into a different format.
+    Execution: An RTE is involved in the execution of the code, while a compiler works beforehand to create the executable code.
+    Outcome: An RTE allows running the program, while a compiler creates the program itself.
+    In simpler terms, consider the RTE like a stage for a play and the compiler like a scriptwriter. The scriptwriter (compiler) creates the script (machine code) for the play, but it's the stage (RTE) that provides the platform and actors (libraries, frameworks) to bring the play to life (execute the program).
+
+when they say it includes libraries to run the code? does that mean the libraries from NPM? 
+    cause we have to download the libraries, so Node.js is just the basics to run a program without additional libraries then the libraries from NPM are optional libraries that we added on?
+
+    yes. node.js has a core set of libraries where you use to run the code, if you add more stuff, that's why you have to download the packages. 
+
+ok, so i have coded a simple websocket application using ws library. when i type node index.js, it runs, does it mean that node is running this programme that i wrote locally?
+
+    Yes, that is correct. When you type node index.js, you are instructing the Node.js runtime environment to run the JavaScript code you have written in the file called index.js. This is happening locally on your own computer.
+
+    Here's a breakdown of the process:
+
+    Command: You enter node index.js in your terminal.
+    Node.js runtime:
+    Locates the index.js file in your current working directory.
+    Reads the JavaScript code written in the file.
+    Interprets the code line by line.
+    Executes the code using the V8 JavaScript engine.
+    Application:
+    Runs the program you have written.
+    Interacts with the libraries you have imported, like ws for your WebSocket application.
+    Performs the tasks defined in your code.
+    Therefore, your terminal is acting as a communication channel to instruct Node.js to run your locally written program. Node.js then takes over and executes the code, utilizing the libraries you have included to achieve the desired functionality.
+
+    Here's an analogy to further illustrate the process:
+
+    Imagine you have a recipe (your code) and a kitchen (Node.js runtime).
+    You tell the chef (Node.js) to follow the recipe (run the code).
+    The chef uses the ingredients and tools (libraries) available in the kitchen (runtime) to prepare the dish (execute the program).
+    You, the user, then enjoy the delicious meal (the results of your program).
+    In summary, typing node index.js is like giving the green light for your locally written application to run within the Node.js environment.
+
+
+Since you created a WebSocket server using ws in your local index.js file and ran it with node index.js, the server is running locally on your own computer.
+
+    Here's why:
+
+    Local file execution: The index.js file containing your WebSocket server code is located on your computer.
+    Node.js runtime environment: When you run node index.js, Node.js executes the code locally on your machine.
+    No external server deployment: You haven't specified deploying the server to any external cloud platform or other remote server.
+    Therefore, unless you have explicitly deployed your WebSocket server code to another server, it remains running locally on your computer.
+
+    Here are some additional points to consider:
+
+    Port binding: By default, the WebSocket server will listen to a specific port on your computer (e.g., 8080). You can specify a different port in your code.
+    Local access: You can only connect to the WebSocket server from applications running on the same computer. To access it remotely, you need to configure port forwarding on your router.
+    Deployment options: If you want to make your WebSocket server publicly accessible, you need to deploy it to a remote server with a publicly accessible IP address.
+    In summary, your WebSocket server is currently running locally on your machine, providing a communication channel for applications running on the same computer. If you want to make it accessible externally, you need to take additional steps for deployment.

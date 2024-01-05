@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { LocalWebSocket } from './websocket/LocalWebsocket';
 
 import "../node_modules/react-grid-layout/css/styles.css"
 import "../node_modules/react-resizable/css/styles.css"
@@ -32,18 +33,11 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  // const gridProps = { 
-  //       className: "layout",
-  //       cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-  //       rowHeight: 100
-  //   }
 
   return (
     <ThemeProvider theme={darkTheme}>
       <div className="`App">
-        {/* <header className="App-header">
-        <h1>Hello</h1>
-        </header> */}
+        <LocalWebSocket />
         <GridLayout  />
       </div>
     </ThemeProvider>

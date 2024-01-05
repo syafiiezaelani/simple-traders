@@ -1,0 +1,5 @@
+Using MERN to create this app. 
+mongodb, express, react, node.js
+
+what is node.js: 
+Node.js is an open-source, cross-platform JavaScript runtime environment built on Chrome's V8 JavaScript engine. It allows developers to write JavaScript code that can run outside a web browser, enabling the creation of server-side applications and command-line tools.

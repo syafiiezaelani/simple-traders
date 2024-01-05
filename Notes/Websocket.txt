@@ -1,0 +1,127 @@
+
+i think i need to look into fullstack, setting up the server...
+
+this guy did express together with websocket: https://www.youtube.com/watch?v=wV-fDdHhGqs&ab_channel=Vuka
+
+dont think i would need express server?? not sure...go without just websocket server for now. 
+taking a look at this: https://www.npmjs.com/package/ws
+
+what is a websocket server?
+
+
+    A WebSocket server is a special type of server that facilitates real-time, two-way communication between a web browser or client application and a server. It differs from traditional HTTP servers in several key aspects:
+
+    1. Bi-directional communication: Unlike HTTP, which primarily uses request-response communication, WebSockets enable continuous, bi-directional data flow. Both the client and server can send and receive messages at any time.
+
+    2. Full-duplex: WebSockets provide a full-duplex communication channel, meaning both parties can send and receive data simultaneously. Traditional HTTP, on the other hand, is half-duplex, where only one party can transmit data at a time.
+
+    3. Persistent connection: After establishing a WebSocket connection, it remains open until explicitly closed, allowing for continuous data transfer without the need for repeated handshakes.
+
+    4. Low overhead: WebSockets use a lightweight communication protocol, resulting in lower overhead compared to other real-time communication methods like polling. This is especially beneficial for applications requiring frequent data exchanges.
+
+    5. Diverse applications: WebSockets find applications in various scenarios, including:
+
+    Chat applications: Real-time messaging between users.
+    Online gaming: Real-time synchronization of game state and player actions.
+    Live streaming: Sending and receiving audio/video streams.
+    Collaborative editing: Real-time document editing with multiple users.
+    IoT applications: Real-time data exchange between devices and servers.
+    Overall, a WebSocket server provides a robust and efficient mechanism for real-time communication, making it a valuable tool for building interactive and dynamic web applications.
+
+what is a server?
+
+    A server can be both code and an application, depending on the context. Here's a breakdown:
+
+    1. Code:
+
+    At its core, a server is software code that defines its functionality.
+    This code typically includes logic for:
+    Listening for incoming requests.
+    Processing those requests and generating responses.
+    Managing resources and data.
+    Communicating with other servers or applications.
+    The specific code used to build a server varies depending on its purpose and the programming language chosen.
+    2. Application:
+
+    When this server code is executed, it becomes a running application that provides specific services.
+    These services can include:
+    Serving web pages and files.
+    Managing databases and storing data.
+    Sending and receiving emails.
+    Processing payments and transactions.
+    Running background tasks and calculations.
+    Facilitating real-time communication (like with WebSockets).
+    So, a server application is essentially a program that runs continuously and listens for requests from other applications or devices.
+    In essence, a server is both the code that defines its functionality and the running application that provides its services. It's the software that acts behind the scenes to enable various functions and keep things running smoothly in the digital world.
+
+    Here's an analogy to illustrate:
+
+    Imagine a restaurant kitchen.
+    The recipes (code) tell the chefs what to do.
+    The chefs and kitchen staff (running application) are responsible for cooking and preparing the food.
+    The final dishes served (services) are what the customers enjoy.
+    Similarly, a server takes "recipes" (code) and uses them to provide "services" for other applications or devices, acting like the kitchen behind the scenes to ensure everything functions smoothly.
+
+hmmm, not exactly what i'm looking for. cause react there is a strcuture, you got your components and then you use this components in the main app. there is also a separate folder for api and redux as well. what about websocket server with ws. you can recommend me other libraries i can use with the server and explain to me the benefits of using them
+
+    Websocket Server Structure with ws and Other Libraries
+    While the React structure has components and separate folders for logic like API and Redux, a WebSocket server doesn't follow the same structure. Here's a breakdown of a typical WebSocket server structure with ws and other libraries, along with their benefits:
+
+    1. Server-side (Node.js):
+
+    a. Dependencies:
+
+    ws: Core library for creating WebSocket servers and clients.
+    Additional libraries based on your needs:
+    Express: Middleware framework for routing and HTTP requests.
+    Body-parser: Parses incoming request bodies (e.g., JSON data).
+    Axios: Makes HTTP requests to external APIs.
+    Database driver: Connects and interacts with your database (e.g., MySQL, MongoDB).
+    JWT library: Manages authentication and authorization tokens.
+    Logging library: Logs server events and errors.
+    b. Folder structure:
+
+    index.js: Entry point for the server, initializing and running the WebSocket server.
+    routes/: Folder containing route handlers for different functionalities.
+    models/: Data models for interacting with the database.
+    utils/: Utility functions for common tasks.
+    config.js: Configuration file for server settings like port and database connection details.
+    c. Benefits:
+
+    Modular structure: Makes the code organized and maintainable.
+    Separation of concerns: Each file focuses on a specific task, improving code clarity.
+    Reusable code: Common functionalities can be shared across different parts of the server.
+    Scalability: The structure can adapt to growing complexity.
+    2. Libraries and their benefits:
+
+    Express:
+    Provides middleware for routing requests to specific handlers.
+    Simplifies HTTP request handling and response sending.
+    Body-parser:
+    Automatically parses JSON and other data formats from request bodies.
+    Saves you from manually handling parsing logic.
+    Axios:
+    Makes HTTP requests to external APIs easily.
+    Offers features like interceptors and error handling.
+    Database driver:
+    Allows interaction with your database for data storage and retrieval.
+    Provides specific methods for querying and manipulating data.
+    JWT library:
+    Simplifies token-based authentication and authorization.
+    Enhances security and user management.
+    Logging library:
+    Records server events and errors for troubleshooting and monitoring.
+    Provides valuable insights into server behavior.
+    3. Additional libraries:
+
+    Socket.io: Socket.io provides additional features like room management and broadcast functionality. Consider it if your application requires more advanced communication capabilities.
+    Pusher: Pusher is a cloud-based service for managing real-time communication. It can be a good option if you need a scalable and reliable solution for large-scale applications.
+    Choosing the libraries depends on your specific needs and application requirements. Start with the core libraries like ws and add others as needed to build a robust and feature-rich server. Remember to maintain a modular structure and separate concerns for a clean and maintainable codebase.
+
+there is a stucture for server, after doing more research. 
+    for websocket and js there are 2: socket.io and express-ws.
+    looking to do more research for these 2 before deciding on one. 
+
+    
+going with socket.io. but socket.io is built on ws, its not a webscoket server on its on.
+
